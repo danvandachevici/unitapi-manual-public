@@ -21,3 +21,11 @@ Set of basic APIs for common personal projects
 - AWS Lambda
 - Codebuild
 - Dynamodb
+
+# Milestones
+1. Server starts and works locally via web requests (includes remote DB usage, etc)
+2. Deploy & provision everything automatically (terraform/serverless?)
+3. UI for recipes
+4. Lazy-load modules
+5. New APIs
+6. New UIs
