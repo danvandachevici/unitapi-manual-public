@@ -1,8 +1,8 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { CommonServer } from '@common/common-server';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+  process.env.IS_OFFLINE = 'true';
+  const server = new CommonServer();
+  server.genMainApp();
 }
 bootstrap();
