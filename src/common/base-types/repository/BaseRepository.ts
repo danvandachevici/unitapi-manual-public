@@ -1,6 +1,5 @@
 import { InternalServerErrorException } from '@nestjs/common';
 import { Logger } from '@nestjs/common';
-import * as AWS from 'aws-sdk';
 import { WriteInterface } from '../../interfaces/write.interface';
 import { ReadInterface } from '../../interfaces/read.interface';
 import { BaseEntity } from '../entity/BaseEntity';
@@ -8,9 +7,7 @@ import { EntityFromDbDtoBase } from '../dto/EntityFromDbDtoBase';
 import { EntityToDbDtoBase } from '../dto/EntityToDbDtoBase';
 import { IdType_donotuse, Id_of } from '@common/services/id.service';
 import {
-  ListTablesCommand,
   DynamoDBClient,
-  CreateTableCommand,
   CreateTableCommandInput,
 } from '@aws-sdk/client-dynamodb';
 import {
@@ -23,18 +20,14 @@ import {
   UpdateCommandInput,
   UpdateCommandOutput,
 } from '@aws-sdk/lib-dynamodb';
-import {
-  AbstractFunctionNotImplemented,
-  TableDoesNotExistException,
-  TableNameNotPassedException,
-} from '@common/exceptions';
-import { nanoid } from 'nanoid';
+import { AbstractFunctionNotImplemented } from '@common/exceptions';
 
 export abstract class BaseRepository<
-  TGenericEntity extends BaseEntity,
-  FromDbDto extends EntityFromDbDtoBase,
-  ToDbDto extends EntityToDbDtoBase,
-> implements WriteInterface<TGenericEntity>, ReadInterface<TGenericEntity>
+    TGenericEntity extends BaseEntity,
+    FromDbDto extends EntityFromDbDtoBase,
+    ToDbDto extends EntityToDbDtoBase,
+  >
+  implements WriteInterface<TGenericEntity>, ReadInterface<TGenericEntity>
 {
   protected tableName: string;
   protected documentClient: DynamoDBDocumentClient;
@@ -85,7 +78,7 @@ export abstract class BaseRepository<
 
     return this.documentClient
       .send(command)
-      .then((res) => {
+      .then(() => {
         return ent;
       })
       .catch((ex) => {
@@ -139,8 +132,8 @@ export abstract class BaseRepository<
 
     return this.documentClient
       .send(command)
-      .then((res) => true)
-      .catch((ex) => {
+      .then(() => true)
+      .catch(() => {
         throw new InternalServerErrorException(-180);
       });
   }

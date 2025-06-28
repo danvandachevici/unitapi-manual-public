@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { RecipesOracleModule } from './recipes-oracle/RecipesOracleModule';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [RecipesOracleModule],
+  controllers: [],
+  providers: [],
 })
 export class ServicesModule {}

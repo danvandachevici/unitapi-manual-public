@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid';
 const separator = '-00-';
 
 export type IdType_donotuse = string;
-export type Id_of<T extends BaseEntity> = string;
+export type Id_of<T extends BaseEntity> = IdType_donotuse;
 
 export class IdService {
   static getId<T extends BaseEntity>(type: Id_of<T>, size?: number): string {
