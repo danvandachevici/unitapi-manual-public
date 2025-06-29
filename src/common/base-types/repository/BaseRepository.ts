@@ -9,8 +9,10 @@ import { IdType_donotuse, Id_of } from '@common/services/id.service';
 import {
   DynamoDBClient,
   CreateTableCommandInput,
+  ScanCommand,
 } from '@aws-sdk/client-dynamodb';
 import {
+  BatchGetCommand,
   DeleteCommand,
   DynamoDBDocumentClient,
   GetCommand,
@@ -192,5 +194,58 @@ export abstract class BaseRepository<
     const dto: FromDbDto = new this.FromDbDtoCreator(response.Item);
     const inst: TGenericEntity = new this.EntityCreator(dto);
     return inst;
+  }
+  async genFromIds(id: string[]): Promise<TGenericEntity[]> {
+    if (!id || !id.length) {
+      return [];
+    }
+    const getParams = {
+      RequestItems: {
+        [this.tableName]: {
+          Keys: id.map((i) => ({ id: i })),
+        },
+      },
+    };
+    const command = new BatchGetCommand(getParams);
+    return this.documentClient
+      .send(command)
+      .then((data) => {
+        if (!data || !data.Responses || !data.Responses[this.tableName]) {
+          return [];
+        }
+        return data.Responses[this.tableName].map((item) => {
+          const dto: FromDbDto = new this.FromDbDtoCreator(item);
+          const inst: TGenericEntity = new this.EntityCreator(dto);
+          return inst;
+        });
+      })
+      .catch((e) => {
+        this.logger.error(`Error querying: ${JSON.stringify(e, null, 2)}`);
+        throw new InternalServerErrorException(-181);
+      });
+  }
+  async genGetAll(limit: number): Promise<TGenericEntity[]> {
+    const scanParams = {
+      TableName: this.tableName,
+      Limit: limit || 100,
+      ScanIndexForward: true, // true for ascending order, false for descending
+    };
+    const command = new ScanCommand(scanParams);
+    return this.documentClient
+      .send(command)
+      .then((data) => {
+        if (!data || !data.Items || !data.Items.length) {
+          return [];
+        }
+        return data.Items.map((item) => {
+          const dto: FromDbDto = new this.FromDbDtoCreator(item);
+          const inst: TGenericEntity = new this.EntityCreator(dto);
+          return inst;
+        });
+      })
+      .catch((e) => {
+        this.logger.error(`Error querying: ${JSON.stringify(e, null, 2)}`);
+        throw new InternalServerErrorException(-181);
+      });
   }
 }

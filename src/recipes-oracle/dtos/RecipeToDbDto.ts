@@ -1,5 +1,5 @@
 import { EntityToDbDtoBase } from '@common/base-types/dto/EntityToDbDtoBase';
-import { RecipeEntity } from '../RecipeEntity';
+import { RecipeEntity } from '../entities/RecipeEntity';
 
 export class RecipeToDto extends EntityToDbDtoBase {
   title: string;

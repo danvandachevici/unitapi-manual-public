@@ -1,5 +1,5 @@
 import { BaseRepository } from '@common/base-types/repository/BaseRepository';
-import { RecipeEntity } from '../RecipeEntity';
+import { RecipeEntity } from '../entities/RecipeEntity';
 import { RecipeFromDbDto } from '../dtos/RecipeFromDbDto';
 import { RecipeToDto } from '../dtos/RecipeToDbDto';
 

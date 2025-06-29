@@ -1,5 +1,5 @@
 import { CreationBaseDto } from '@common/base-types/dto/CreationBaseDto';
-import { MeasurementUnit } from '../MeasurementUnitEnum';
+import { MeasurementUnit } from '../entities/MeasurementUnitEnum';
 
 export class CreateIngredientDto extends CreationBaseDto {
   name: string;

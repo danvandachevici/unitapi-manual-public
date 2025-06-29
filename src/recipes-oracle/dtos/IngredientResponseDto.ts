@@ -1,6 +1,6 @@
 import { Id_of } from '@common/services/id.service';
 import { IngredientEntity } from '../IncredientEntity';
-import { MeasurementUnit } from '../MeasurementUnitEnum';
+import { MeasurementUnit } from '../entities/MeasurementUnitEnum';
 
 export class IngredientResponseDto {
   id: Id_of<IngredientEntity>;
