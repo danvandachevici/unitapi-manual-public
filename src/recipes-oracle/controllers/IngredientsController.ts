@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { IngredientResponseDto } from '../dtos/IngredientResponseDto';
-import { IngredientEntity } from '../IncredientEntity';
+import { IngredientEntity } from '../entities/IngredientEntity';
 import { IngredientRepository } from '../repositories/IngredientRepository';
 import { CreateIngredientDto } from '../dtos/CreateIngredientDto';
 

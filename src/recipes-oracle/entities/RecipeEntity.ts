@@ -1,6 +1,6 @@
 import { BaseEntity } from '@common/base-types/entity/BaseEntity';
 import { CreateRecipeDto } from '../dtos/CreateRecipeDto';
-import { IngredientEntity } from './IncredientEntity';
+import { IngredientEntity } from './IngredientEntity';
 import { Id_of } from '@common/services/id.service';
 
 export class RecipeEntity extends BaseEntity {

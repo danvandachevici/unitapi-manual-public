@@ -1,5 +1,5 @@
 import { EntityToDbDtoBase } from '@common/base-types/dto/EntityToDbDtoBase';
-import { IngredientEntity } from '../IncredientEntity';
+import { IngredientEntity } from '../entities/IngredientEntity';
 import { MeasurementUnit } from '../entities/MeasurementUnitEnum';
 
 export class IngredientToDbDto extends EntityToDbDtoBase {

@@ -1,5 +1,5 @@
 import { Id_of } from '@common/services/id.service';
-import { IngredientEntity } from '../IncredientEntity';
+import { IngredientEntity } from '../entities/IngredientEntity';
 import { MeasurementUnit } from '../entities/MeasurementUnitEnum';
 
 export class IngredientResponseDto {

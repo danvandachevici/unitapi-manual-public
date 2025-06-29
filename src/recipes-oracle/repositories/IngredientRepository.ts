@@ -1,6 +1,6 @@
 import { BaseRepository } from '@common/base-types/repository/BaseRepository';
 import { IngredientFromDbDto } from '../dtos/IngredientFromDbDto';
-import { IngredientEntity } from '../IncredientEntity';
+import { IngredientEntity } from '../entities/IngredientEntity';
 import { IngredientToDbDto } from '../dtos/IngredientToDbDto';
 import { Injectable } from '@nestjs/common';
 

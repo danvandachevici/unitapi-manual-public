@@ -1,5 +1,5 @@
 import { Id_of } from '@common/services/id.service';
-import { IngredientEntity } from '../IncredientEntity';
+import { IngredientEntity } from '../entities/IngredientEntity';
 import { RecipeEntity } from '../entities/RecipeEntity';
 import { IngredientRepository } from '../repositories/IngredientRepository';
 

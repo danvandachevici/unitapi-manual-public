@@ -1,6 +1,6 @@
 import { EntityFromDbDtoBase } from '@common/base-types/dto/EntityFromDbDtoBase';
 import { Id_of } from '@common/services/id.service';
-import { IngredientEntity } from '../IncredientEntity';
+import { IngredientEntity } from '../entities/IngredientEntity';
 
 export class RecipeFromDbDto extends EntityFromDbDtoBase {
   title: string;
